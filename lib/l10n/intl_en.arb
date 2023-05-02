@@ -1,0 +1,21 @@
+{
+    "todo": "To do",
+    "completed": "Completed",
+    "inProgress": "In Progress",
+    "status": "Status",
+    "sortByTitle": "Sort By Title",
+    "sortByDesc": "Sort By Description",
+    "sortByDate": "Sort By Date",
+    "taskDetail": "Task Detail",
+    "name": "Name",
+    "description": "Description",
+    "expiredAt": "Expired At",
+    "createdAt": "Created At",
+    "camera": "Camera",
+    "gallery": "Gallery",
+    "submit": "Submit",
+    "search": "Search by name...",
+    "clear": "Clear",
+    "selectADate": "Select a date",
+    "apply": "Apply"
+}

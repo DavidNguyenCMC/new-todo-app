@@ -1,0 +1,1 @@
+enum DataSourceStatus { initial, loading, refreshing, empty, success, failed, loadMore }

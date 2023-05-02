@@ -1,0 +1,60 @@
+syntax = "proto3";
+
+
+message Todo{
+    string id = 1;
+    string title = 2;
+    string description = 3;
+    string image = 4;
+    string status = 5;
+    string createdAt = 6;
+    string expiredAt = 7;
+}
+message ListTodo{
+    repeated Todo todos = 1;
+}
+message Dynamic{
+    TodoCreateRequest todoCreate = 1;
+    TodoUpdateRequest todoUpdate = 2;
+    TodoDeleteRequest todoDelete = 3;
+}
+
+service TodoService {
+    rpc createTodo(TodoCreateRequest) returns (TodoCreateResponse);
+    rpc readTodo(TodoReadRequest) returns (TodoReadResponse);
+    rpc updateTodo(TodoUpdateRequest) returns (TodoUpdateResponse);
+    rpc deleteTodo(TodoDeleteRequest) returns (TodoDeleteResponse);
+}
+
+// create
+message TodoCreateRequest{
+    Todo todo = 1;
+} 
+message TodoCreateResponse{
+    bool result = 1;
+} 
+
+// read
+message TodoReadRequest{
+    string id = 1;
+}
+
+message TodoReadResponse{
+    repeated Todo todos = 1;
+}
+
+//update
+message TodoUpdateRequest{
+    Todo todo = 1;
+} 
+message TodoUpdateResponse{
+    bool result = 1;
+} 
+
+//delete 
+message TodoDeleteRequest{
+    string id = 1; 
+} 
+message TodoDeleteResponse{
+    bool result = 1;
+} 
