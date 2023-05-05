@@ -98,7 +98,7 @@ Now, lets dive into the lib folder which has the main code for the application.
 ```
 
 In here: Directory structure according to Flutter Clean Architecture Primer
-
+```
 |- data: Represents the data-layer of the application
     |- models
     |- repository-implement
@@ -118,3 +118,4 @@ In here: Directory structure according to Flutter Clean Architecture Primer
     |- di (Initialize the objects and the dependency injection module.)
     |- generated (generated from flutter_intl)
     |- l10n (contain all of language files)
+```
