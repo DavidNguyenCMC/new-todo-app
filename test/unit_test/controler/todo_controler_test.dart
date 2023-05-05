@@ -10,7 +10,7 @@ import 'package:todo_app/domain/usecase/get_cached_tasks_usecase.dart';
 import 'package:todo_app/domain/usecase/get_tasks_usecase.dart';
 import 'package:todo_app/domain/usecase/search_task_usecase.dart';
 import 'package:todo_app/domain/usecase/update_task_usecase.dart';
-import 'package:todo_app/pages/todo/controller/todo_controller.dart';
+import 'package:todo_app/presentations/pages/todo/controller/todo_controller.dart';
 
 import '../repository/task_repository_test.mocks.dart';
 

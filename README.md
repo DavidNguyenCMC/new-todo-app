@@ -79,10 +79,8 @@ lib/
 |- configs
 |- data
 |- domain
-|- di
 |- infrastructure
-|- pages
-|- routers
+|- presentations
 |- main.dart
 |- main_common.dart
 ```
@@ -92,10 +90,27 @@ Now, lets dive into the lib folder which has the main code for the application.
 ```
 1- data - Local and / or Remote(API) data sources, raw model from data source, mapper(Map Entity objects to Models and vice-versa)
 2- domain - Business logic and business objects(entities) to modify or shape the data source.
-3- di - Initialize the objects and the dependency injection module.
-4- pages - How modified data source is shown to user.
-5- infrastructor - contain all of framework that using on application
-6- routers - Routes folder containing routes for the app.
-7- common - Folders manage constants, helpers, extensions,...
-8- main_common.dart - Method injection flavor for target file main_production.dart and main_staging.dart.
+3- pages - How modified data source is shown to user.
+4- infrastructor - contain all of framework that using on application
+5- routers - Routes folder containing routes for the app.
+6- common - Folders manage constants, helpers, extensions,...
+7- main_common.dart - Method injection flavor for target file main_production.dart and main_staging.dart.
 ```
+
+In here: Directory structure according to Flutter Clean Architecture Primer
+|- data: Represents the data-layer of the application
+    |- models
+    |- repository-implement
+    |- mappers (Map Entity objects to Models and vice-versa)
+    |- service (support to connect with database)
+|- domain: Represents the inner-most layer. Therefore, it the most abstract layer in the architecture.
+    |- entities
+    |- repositories (using as gateway)
+    |- usecase
+|- presentation: is the presentation layer of the application
+    |- pages
+    |- routes
+|- infrastructor: contain all of framework that using on application
+    |- di (Initialize the objects and the dependency injection module.)
+    |- generated (generated from flutter_intl)
+    |- l10n (contain all of language files)

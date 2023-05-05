@@ -3,10 +3,10 @@ import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:todo_app/configs/firebase_config.dart';
-import 'package:todo_app/di/injection.dart';
+import 'package:todo_app/infrastructure/di/injection.dart';
+import 'package:todo_app/presentations/pages/app.dart';
 
 import 'configs/build_config.dart';
-import 'pages/app.dart';
 
 Future<void> mainCommon() async {
   WidgetsFlutterBinding.ensureInitialized();

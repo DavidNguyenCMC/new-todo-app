@@ -19,12 +19,12 @@ import 'package:todo_app/domain/usecase/get_cached_tasks_usecase.dart';
 import 'package:todo_app/domain/usecase/get_tasks_usecase.dart';
 import 'package:todo_app/domain/usecase/search_task_usecase.dart';
 import 'package:todo_app/domain/usecase/update_task_usecase.dart';
-import 'package:todo_app/pages/app.dart';
-import 'package:todo_app/pages/complete/controller/complete_controller.dart';
-import 'package:todo_app/pages/create_task/controller/create_task_controller.dart';
-import 'package:todo_app/pages/inprogress/controller/inprogress_controller.dart';
-import 'package:todo_app/pages/todo/controller/todo_controller.dart';
-import 'package:todo_app/pages/widgets/task_list_widget.dart';
+import 'package:todo_app/presentations/pages/app.dart';
+import 'package:todo_app/presentations/pages/complete/controller/complete_controller.dart';
+import 'package:todo_app/presentations/pages/create_task/controller/create_task_controller.dart';
+import 'package:todo_app/presentations/pages/inprogress/controller/inprogress_controller.dart';
+import 'package:todo_app/presentations/pages/todo/controller/todo_controller.dart';
+import 'package:todo_app/presentations/pages/widgets/task_list_widget.dart';
 
 import '../unit_test/repository/task_repository_test.mocks.dart';
 
