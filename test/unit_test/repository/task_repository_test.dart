@@ -3,35 +3,37 @@ import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:todo_app/common/api_client/data_state.dart';
-import 'package:todo_app/data/local/datasource/task_local_datasource.dart';
-import 'package:todo_app/data/task/response_models/task_model.dart';
-import 'package:todo_app/data/task/task_service.dart';
-import 'package:todo_app/domain/entities/task.dart';
+import 'package:todo_app/data/model/task/response_models/task_model.dart';
+import 'package:todo_app/data/repository_implement/task_repository_implement.dart';
+import 'package:todo_app/data/service/task_local_service.dart';
+import 'package:todo_app/data/service/task_service.dart';
+import 'package:todo_app/domain/entities/task_entity.dart';
 import 'package:todo_app/domain/repositories/task_repository.dart';
 
 import 'task_repository_test.mocks.dart';
 
-@GenerateMocks([TaskLocalDatasource, SharedPreferences], customMocks: [MockSpec<TaskService>(onMissingStub: OnMissingStub.returnDefault)])
+@GenerateMocks([TaskLocalService, SharedPreferences],
+    customMocks: [MockSpec<TaskService>(onMissingStub: OnMissingStub.returnDefault), MockSpec<TaskRepository>(onMissingStub: OnMissingStub.returnDefault)])
 void main() {
   group('Test the Task Repository:\n', () {
     final service = MockTaskService();
-    final localDatasource = MockTaskLocalDatasource();
+    final localDatasource = MockTaskLocalService();
     final repository =
         TaskRepositoryImpl(userService: service, taskLocalDatasource: localDatasource);
 
     test('The tasks should be fetch from cached', () async {
       when(localDatasource.getTasks()).thenAnswer((_) => Future.value([
-        TaskModel(
-          name: 'Task test 1',
-          desc: 'Task Desc',
-          status: TaskStatus.inprogress.rawValue,
-        ),
-        TaskModel(
-          name: 'Task test 2',
-          desc: 'Task Desc',
-          status: TaskStatus.inprogress.rawValue,
-        )
-      ]));
+            TaskModel(
+              name: 'Task test 1',
+              desc: 'Task Desc',
+              status: TaskStatus.inprogress.rawValue,
+            ),
+            TaskModel(
+              name: 'Task test 2',
+              desc: 'Task Desc',
+              status: TaskStatus.inprogress.rawValue,
+            )
+          ]));
 
       final result = await repository.getCachedTasks();
 
@@ -65,7 +67,7 @@ void main() {
             status: TaskStatus.inprogress.rawValue,
           ))));
 
-      final result = await repository.createTask(Task(
+      final result = await repository.createTask(TaskEntity(
         name: 'Task test',
         desc: 'Task Desc',
         status: TaskStatus.inprogress,
@@ -80,7 +82,7 @@ void main() {
             status: TaskStatus.complete.rawValue,
           ))));
       when(localDatasource.updateTask(any)).thenAnswer((_) => Future.value());
-      final result = await repository.updateTask(Task(
+      final result = await repository.updateTask(TaskEntity(
         name: 'Task test',
         desc: 'Task Desc',
         status: TaskStatus.complete,
@@ -97,17 +99,17 @@ void main() {
 
     test('The tasks should be searched', () async {
       when(service.getTasks()).thenAnswer((_) => Future.value(DataSuccess([
-        TaskModel(
-          name: 'Learning',
-          desc: 'Task Desc',
-          status: TaskStatus.inprogress.rawValue,
-        ),
-        TaskModel(
-          name: 'Walking',
-          desc: 'Task Desc',
-          status: TaskStatus.inprogress.rawValue,
-        )
-      ])));
+            TaskModel(
+              name: 'Learning',
+              desc: 'Task Desc',
+              status: TaskStatus.inprogress.rawValue,
+            ),
+            TaskModel(
+              name: 'Walking',
+              desc: 'Task Desc',
+              status: TaskStatus.inprogress.rawValue,
+            )
+          ])));
 
       final result = await repository.searchTasks('Task');
 

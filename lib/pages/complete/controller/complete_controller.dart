@@ -1,11 +1,10 @@
 import 'package:get/get.dart';
-import 'package:injectable/injectable.dart';
 
 import '../../../common/api_client/data_state.dart';
 import '../../../common/enums/data_source_status.dart';
 import '../../../common/enums/status.dart';
 import '../../../common/event/event_bus_mixin.dart';
-import '../../../domain/entities/task.dart';
+import '../../../domain/entities/task_entity.dart';
 import '../../../domain/repositories/task_repository.dart';
 import '../../helper/event_bus/task_events.dart';
 import 'complete_state.dart';
@@ -63,7 +62,7 @@ class CompleteController extends GetxController with EventBusMixin {
     _fetchTasks();
   }
 
-  Future<void> deleteTask(Task? task) async {
+  Future<void> deleteTask(TaskEntity? task) async {
     if (task?.id == null) {
       return;
     }

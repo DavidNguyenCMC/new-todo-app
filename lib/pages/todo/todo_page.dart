@@ -11,7 +11,7 @@ import '../../common/enums/status.dart';
 import '../../common/widgets/dialogs/loading_dialog.dart';
 import '../../common/widgets/search_text_field.dart';
 import '../../common/widgets/toast/toast.dart';
-import '../../domain/entities/task.dart';
+import '../../domain/entities/task_entity.dart';
 import '../../routes/app_routes.dart';
 import '../widgets/detail_option_widget.dart';
 import '../widgets/task_list_widget.dart';
@@ -148,7 +148,7 @@ class _TodoPageState extends State<TodoPage> {
     }
   }
 
-  void _onCheck(BuildContext context, Task? task, bool value) {
+  void _onCheck(BuildContext context, TaskEntity? task, bool value) {
     _controller.updateTaskStatus(task, value);
   }
 
@@ -156,15 +156,15 @@ class _TodoPageState extends State<TodoPage> {
     Navigator.pushNamed(context, RouterName.createTask);
   }
 
-  void _onItemTapped(BuildContext context, Task? task) {
+  void _onItemTapped(BuildContext context, TaskEntity? task) {
     Navigator.pushNamed(context, RouterName.taskDetail, arguments: task);
   }
 
-  void _onEditTapped(BuildContext context, Task? task) {
+  void _onEditTapped(BuildContext context, TaskEntity? task) {
     Navigator.pushNamed(context, RouterName.editTask, arguments: task);
   }
 
-  void _onDeleteTapped(BuildContext context, Task? task) {
+  void _onDeleteTapped(BuildContext context, TaskEntity? task) {
     _controller.deleteTask(task);
   }
 }

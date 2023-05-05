@@ -1,7 +1,7 @@
 import 'package:todo_app/common/utils/extensions/extension.dart';
-import 'package:todo_app/domain/entities/task.dart';
+import 'package:todo_app/domain/entities/task_entity.dart';
 
-class TaskModel extends Task {
+class TaskModel extends TaskEntity {
   TaskModel({
     String? id,
     String? name,
@@ -48,7 +48,7 @@ class TaskModel extends Task {
     );
   }
 
-  factory TaskModel.fromModel(Task? model) {
+  factory TaskModel.fromModel(TaskEntity? model) {
     return TaskModel(
       id: model?.id,
       name: model?.name,

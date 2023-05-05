@@ -4,7 +4,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:image_picker_web/image_picker_web.dart';
 
 import '../../common/resources/index.dart';
 
@@ -20,12 +19,19 @@ class PlatformImagePickerResult {
 class PlatformImagePicker {
   static Future<PlatformImagePickerResult?> show(BuildContext context) async {
     if (kIsWeb) {
-      Uint8List? fromPicker = await ImagePickerWeb.getImageAsBytes();
+      // Uint8List? fromPicker = await ImagePickerWeb.getImageAsBytes();
+      // XFile? file;
+      // if (fromPicker != null) {
+      //   file = XFile.fromData(fromPicker);
+      // }
+      // return PlatformImagePickerResult(file: file, imageByte: fromPicker);
+      final fromPicker = await ImagePicker().pickImage(source: ImageSource.gallery);
+      final imageReadAsBytes = await fromPicker?.readAsBytes();
       XFile? file;
-      if (fromPicker != null) {
-        file = XFile.fromData(fromPicker);
+      if (imageReadAsBytes != null) {
+        file = XFile.fromData(imageReadAsBytes);
       }
-      return PlatformImagePickerResult(file: file, imageByte: fromPicker);
+      return PlatformImagePickerResult(file: file, imageByte: imageReadAsBytes);
     }
     final ImageSource? imageSource = await _showImageSourceActionSheet(context);
     final ImagePicker picker = ImagePicker();
@@ -42,8 +48,7 @@ class PlatformImagePicker {
     }
   }
 
-  static Future<ImageSource?> _showImageSourceActionSheet(
-      BuildContext context) async {
+  static Future<ImageSource?> _showImageSourceActionSheet(BuildContext context) async {
     if (Platform.isIOS) {
       return showCupertinoModalPopup<ImageSource>(
         context: context,

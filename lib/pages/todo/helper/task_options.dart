@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../common/resources/index.dart';
-import '../../../domain/entities/task.dart';
+import '../../../domain/entities/task_entity.dart';
 import '../../widgets/detail_option_widget.dart';
 
 enum OptionType { edit, delete }

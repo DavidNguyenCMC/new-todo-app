@@ -6,14 +6,14 @@ import 'package:todo_app/common/widgets/spacing.dart';
 import 'package:todo_app/routes/app_routes.dart';
 
 import '../../common/widgets/default_image_widget.dart';
-import '../../domain/entities/task.dart';
+import '../../domain/entities/task_entity.dart';
 
 class TaskDetailPage extends StatelessWidget {
   const TaskDetailPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final Task? task = context.getRouteArguments();
+    final TaskEntity? task = context.getRouteArguments();
     return Scaffold(
       appBar: DefaultAppBar(
         titleText: Strings.localized.taskDetail,

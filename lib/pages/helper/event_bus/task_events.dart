@@ -1,22 +1,22 @@
-import '../../../domain/entities/task.dart';
+import '../../../domain/entities/task_entity.dart';
 
 class OnCreateTaskEvent {
 
-  Task? task;
+  TaskEntity? task;
 
   OnCreateTaskEvent(this.task);
 }
 
 class OnUpdateTaskEvent {
 
-  Task? task;
+  TaskEntity? task;
 
   OnUpdateTaskEvent(this.task);
 }
 
 class OnDeleteTaskEvent {
 
-  Task? task;
+  TaskEntity? task;
 
   OnDeleteTaskEvent(this.task);
 }

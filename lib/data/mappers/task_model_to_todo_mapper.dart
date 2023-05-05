@@ -1,6 +1,6 @@
-import 'package:todo_app/data/generated/todo_barrel.dart';
-import 'package:todo_app/data/task/response_models/task_model.dart';
-import 'package:todo_app/domain/entities/task.dart';
+import 'package:todo_app/data/model/task/response_models/task_model.dart';
+import 'package:todo_app/data/service/network/grpc/generated/todogrpc/todo.pb.dart';
+import 'package:todo_app/domain/entities/task_entity.dart';
 
 import 'mapper.dart';
 

@@ -9,7 +9,7 @@ import '../../common/enums/status.dart';
 import '../../common/resources/index.dart';
 import '../../common/widgets/dialogs/loading_dialog.dart';
 import '../../common/widgets/toast/toast.dart';
-import '../../domain/entities/task.dart';
+import '../../domain/entities/task_entity.dart';
 import '../../routes/app_routes.dart';
 import '../widgets/task_list_widget.dart';
 
@@ -35,13 +35,6 @@ class _InProgressPageState extends State<InProgressPage> {
       _handleStateListener(state);
     });
   }
-
-  // @override
-  // void dispose() {
-  //   super.dispose();
-  //
-  //   _controller.dispose();
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -94,15 +87,15 @@ class _InProgressPageState extends State<InProgressPage> {
     }
   }
 
-  void _onItemTapped(BuildContext context, Task? task) {
+  void _onItemTapped(BuildContext context, TaskEntity? task) {
     Navigator.pushNamed(context, RouterName.taskDetail, arguments: task);
   }
 
-  void _onEditTapped(BuildContext context, Task? task) {
+  void _onEditTapped(BuildContext context, TaskEntity? task) {
     Navigator.pushNamed(context, RouterName.editTask, arguments: task);
   }
 
-  void _onDeleteTapped(BuildContext context, Task? task) {
+  void _onDeleteTapped(BuildContext context, TaskEntity? task) {
     _controller.deleteTask(task);
   }
 }

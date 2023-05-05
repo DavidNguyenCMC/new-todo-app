@@ -1,16 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:get/get.dart';
 import 'package:responsive_framework/responsive_framework.dart';
+import 'package:todo_app/infrastructure/generated/l10n.dart';
 
 import '../common/resources/index.dart';
 import '../common/utils/screen_type_ultil.dart';
 import '../configs/build_config.dart';
-import '../di/injection.dart';
-import '../generated/l10n.dart';
 import '../routes/app_routes.dart';
-import 'main/main_page.dart';
 
 class App extends StatelessWidget {
   const App({Key? key}) : super(key: key);
@@ -42,8 +39,7 @@ class App extends StatelessWidget {
           GlobalWidgetsLocalizations.delegate,
           GlobalCupertinoLocalizations.delegate,
         ],
-        localeResolutionCallback:
-            (Locale? locale, Iterable<Locale> supportedLocales) {
+        localeResolutionCallback: (Locale? locale, Iterable<Locale> supportedLocales) {
           for (final Locale supportedLocale in supportedLocales) {
             if (supportedLocale.languageCode == locale?.languageCode) {
               return supportedLocale;

@@ -2,7 +2,7 @@ import 'package:collection/collection.dart';
 
 import '../../common/resources/index.dart';
 
-class Task {
+class TaskEntity {
   String? id;
   String? name;
   String? desc;
@@ -11,7 +11,7 @@ class Task {
   TaskStatus? status;
   String? image;
 
-  Task({
+  TaskEntity({
     this.id,
     this.name,
     this.desc,

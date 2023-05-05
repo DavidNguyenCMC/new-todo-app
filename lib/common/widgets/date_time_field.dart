@@ -1,6 +1,4 @@
-
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 
 import '../resources/index.dart';
 import '../utils/extensions/extension.dart';
@@ -83,8 +81,8 @@ class DateTimeInput extends StatefulWidget {
 class DateTimeInputState extends State<DateTimeInput> {
   late TextEditingController _textEditingController;
   late DateTimeInputController _dateTimeInputController;
-  final List<int> _availableHours = List<int>.generate(24, (int index) => index);
-  final List<int> _availableMinutes = <int>[0, 15, 30, 45];
+  // final List<int> _availableHours = List<int>.generate(24, (int index) => index);
+  // final List<int> _availableMinutes = <int>[0, 15, 30, 45];
 
   @override
   void initState() {

@@ -1,22 +1,14 @@
 import 'dart:convert';
-import 'package:todo_app/domain/entities/task.dart';
 
-import '../../task/response_models/task_model.dart';
+import 'package:todo_app/data/model/task/response_models/task_model.dart';
+import 'package:todo_app/data/service/task_local_service.dart';
+import 'package:todo_app/domain/entities/task_entity.dart';
+
 import '../keychain/shared_prefs.dart';
 import '../keychain/shared_prefs_key.dart';
 
-abstract class TaskLocalDatasource {
-  Future<List<TaskModel>?> getTasks();
-
-  Future<void> setTasks(List<Task> tasks);
-
-  Future<void> updateTask(Task task);
-
-  Future<void> deleteTask(String? taskID);
-}
-
-class TaskLocalDatasourceImpl implements TaskLocalDatasource {
-  TaskLocalDatasourceImpl(this._sharedPrefs);
+class TaskLocalServiceImplement implements TaskLocalService {
+  TaskLocalServiceImplement(this._sharedPrefs);
 
   final SharedPrefs _sharedPrefs;
 
@@ -32,14 +24,14 @@ class TaskLocalDatasourceImpl implements TaskLocalDatasource {
   }
 
   @override
-  Future<void> setTasks(List<Task> tasks) async {
+  Future<void> setTasks(List<TaskEntity> tasks) async {
     await _sharedPrefs.put(SharedPrefsKey.tasks, jsonEncode(tasks));
   }
 
   @override
-  Future<void> updateTask(Task task) async {
+  Future<void> updateTask(TaskEntity? task) async {
     final List<TaskModel>? tasks = await getTasks();
-    final index = tasks?.indexWhere((element) => element.id == task.id) ?? -1;
+    final index = tasks?.indexWhere((element) => element.id == task?.id) ?? -1;
     if (index >= 0) {
       tasks?[index] = TaskModel.fromModel(task);
       setTasks(List.from((tasks ?? []).map((e) => e)));

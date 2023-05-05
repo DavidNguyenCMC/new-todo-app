@@ -1,6 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:todo_app/data/task/response_models/task_model.dart';
-import 'package:todo_app/domain/entities/task.dart';
+import 'package:todo_app/data/model/task/response_models/task_model.dart';
+import 'package:todo_app/domain/entities/task_entity.dart';
 
 void main() {
   group('Test get task model from json', () {
@@ -48,7 +48,7 @@ void main() {
           }
         }
       };
-      final tasks = List<Task>.from((json['data'] as Map<dynamic, dynamic>)
+      final tasks = List<TaskEntity>.from((json['data'] as Map<dynamic, dynamic>)
           .entries
           .map((e) => TaskModel.fromJson(e.key as String, e.value as Map<dynamic, dynamic>)));
       expect(tasks.length, 3);

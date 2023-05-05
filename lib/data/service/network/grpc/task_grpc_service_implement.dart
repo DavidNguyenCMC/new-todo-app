@@ -1,45 +1,24 @@
 import 'dart:async';
 
 import 'package:grpc/grpc.dart';
-import 'package:todo_app/data/task/response_models/task_model.dart';
-import 'package:todo_app/data/task/request_models/update_task_request.dart';
-import 'package:todo_app/data/task/request_models/create_task_request.dart';
 import 'package:todo_app/common/api_client/data_state.dart';
-import 'package:todo_app/domain/entities/task.dart';
-import '../../generated/todo_barrel.dart';
-import '../../mappers/task_model_to_todo_mapper.dart';
-import '../../mappers/todo_grpc_to_task_model_mapper.dart';
-import '../../task/task_service.dart';
+import 'package:todo_app/data/mappers/task_model_to_todo_mapper.dart';
+import 'package:todo_app/data/mappers/todo_grpc_to_task_model_mapper.dart';
+import 'package:todo_app/data/model/task/request_models/create_task_request.dart';
+import 'package:todo_app/data/model/task/request_models/update_task_request.dart';
+import 'package:todo_app/data/model/task/response_models/task_model.dart';
+import 'package:todo_app/data/service/network/grpc/generated/todogrpc/todo.pbgrpc.dart';
+import 'package:todo_app/data/service/task_service.dart';
 
 class TaskGrpcService implements TaskService {
   ClientChannel clientChannel;
+
   TaskGrpcService({
     required this.clientChannel,
   });
 
-  Future<List<Task>> readTodo() async {
-    final stub = TodoServiceClient(clientChannel);
-    var response = await stub.readTodo(TodoReadRequest());
-    return TodoGrpcToTaskMapper().map(response.todos);
-  }
-
-  Future<void> createTodo(Todo todo) async {
-    final stub = TodoServiceClient(clientChannel);
-    await stub.createTodo(TodoCreateRequest(
-      todo: todo,
-    ));
-  }
-
-  Future<void> deleteTodo({id}) async {
-    final stub = TodoServiceClient(clientChannel);
-    await stub.deleteTodo(
-      TodoDeleteRequest(id: id),
-    );
-  }
-
   @override
   Future<DataState<TaskModel>> createTask(CreateTaskRequest data) async {
-    // TODO: implement createTask
     final stub = TodoServiceClient(clientChannel);
     try {
       await stub.createTodo(TodoCreateRequest(

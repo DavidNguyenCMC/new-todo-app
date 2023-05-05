@@ -21,13 +21,13 @@
   - Screen record run inegration test
 https://user-images.githubusercontent.com/130980158/235578091-ed99b64d-d735-43c1-8e6f-ae422ddceb63.mp4
 
-
   
 🚀 # In this application we are using gRPC in mobile app, and firebase on web application.
 🚀 # To run gRPC service in local:
   - Install protoc_plugin before run, check this link: https://grpc.io/docs/languages/dart/quickstart/
   - run this script in terminal: dart .\bin\server.dart 
-
+🚀 Note: gRPC only work on mobile for now because web need gRPC-web server(it's not support for dart now, we can use another server). So in web we can use firebase instead.
+ 
 🚀 # Run Docker
 - Create the Container
 - To get the container running, we first have to build an image:
@@ -79,7 +79,7 @@ lib/
 |- data
 |- domain
 |- di
-|- l10n
+|- infrastructure
 |- pages
 |- routers
 |- main.dart
@@ -93,7 +93,8 @@ Now, lets dive into the lib folder which has the main code for the application.
 2- domain - Business logic and business objects(entities) to modify or shape the data source.
 3- di - Initialize the objects and the dependency injection module.
 4- pages - How modified data source is shown to user.
-5- router - Routes folder containing routes for the app.
-6- common - Folders manage constants, helpers, extensions,...
-7- main_common.dart - Method injection flavor for target file main_production.dart and main_staging.dart.
+5- infrastructor - contain all of framework that using on application
+6- routers - Routes folder containing routes for the app.
+7- common - Folders manage constants, helpers, extensions,...
+8- main_common.dart - Method injection flavor for target file main_production.dart and main_staging.dart.
 ```

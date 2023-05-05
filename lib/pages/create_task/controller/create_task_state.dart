@@ -4,7 +4,7 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/foundation.dart';
 import 'package:todo_app/common/enums/status.dart';
 
-import '../../../domain/entities/task.dart';
+import '../../../domain/entities/task_entity.dart';
 
 class CreateTaskState extends Equatable {
   const CreateTaskState({
@@ -23,12 +23,12 @@ class CreateTaskState extends Equatable {
   final DateTime? expiredTime;
   final RequestStatus status;
   final String? message;
-  final Task? task;
+  final TaskEntity? task;
   final File? image;
   final Uint8List? imageByte;
 
   CreateTaskState copyWith({
-    Task? task,
+    TaskEntity? task,
     String? name,
     String? desc,
     RequestStatus? status,

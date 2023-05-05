@@ -2,23 +2,29 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:get/get.dart';
 import 'package:integration_test/integration_test.dart';
-import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:todo_app/common/api_client/data_state.dart';
 import 'package:todo_app/common/resources/index.dart';
 import 'package:todo_app/common/widgets/app_checkbox.dart';
 import 'package:todo_app/common/widgets/date_time_field.dart';
-import 'package:todo_app/data/local/datasource/task_local_datasource.dart';
-import 'package:todo_app/data/task/response_models/task_model.dart';
-import 'package:todo_app/data/task/task_service.dart';
-import 'package:todo_app/domain/entities/task.dart';
+import 'package:todo_app/data/model/task/response_models/task_model.dart';
+import 'package:todo_app/data/repository_implement/task_repository_implement.dart';
+import 'package:todo_app/data/service/task_local_service.dart';
+import 'package:todo_app/data/service/task_service.dart';
+import 'package:todo_app/domain/entities/task_entity.dart';
+import 'package:todo_app/domain/repositories/task_repository.dart';
+import 'package:todo_app/domain/usecase/create_task_usecase.dart';
+import 'package:todo_app/domain/usecase/delete_task_usecase.dart';
+import 'package:todo_app/domain/usecase/get_cached_tasks_usecase.dart';
+import 'package:todo_app/domain/usecase/get_tasks_usecase.dart';
+import 'package:todo_app/domain/usecase/search_task_usecase.dart';
+import 'package:todo_app/domain/usecase/update_task_usecase.dart';
 import 'package:todo_app/pages/app.dart';
 import 'package:todo_app/pages/complete/controller/complete_controller.dart';
 import 'package:todo_app/pages/create_task/controller/create_task_controller.dart';
 import 'package:todo_app/pages/inprogress/controller/inprogress_controller.dart';
 import 'package:todo_app/pages/todo/controller/todo_controller.dart';
 import 'package:todo_app/pages/widgets/task_list_widget.dart';
-import 'package:todo_app/domain/repositories/task_repository.dart';
 
 import '../unit_test/repository/task_repository_test.mocks.dart';
 
@@ -26,11 +32,10 @@ Future<void> runWithMock() async {
   runApp(const App());
 }
 
-@GenerateMocks([TaskRepository])
 void main() {
   IntegrationTestWidgetsFlutterBinding.ensureInitialized();
   final service = MockTaskService();
-  final localDatasource = MockTaskLocalDatasource();
+  final localDatasource = MockTaskLocalService();
   group('end-to-end test\n', () {
     setUp(() {
       inject(service, localDatasource);
@@ -121,16 +126,22 @@ void main() {
   });
 }
 
-void inject(TaskService taskService, TaskLocalDatasource taskLocalDatasource) {
+void inject(TaskService taskService, TaskLocalService taskLocalDatasource) {
   Get.lazyPut<TaskRepository>(
       () => TaskRepositoryImpl(userService: taskService, taskLocalDatasource: taskLocalDatasource));
-  Get.lazyPut(() => TodoController(Get.find<TaskRepository>()));
+  Get.lazyPut(() => TodoController(
+      GetTaskUseCase(Get.find<TaskRepository>()),
+      GetCachedTasksUseCase(Get.find<TaskRepository>()),
+      DeleteTaskUseCase(Get.find<TaskRepository>()),
+      SearchTaskUseCase(Get.find<TaskRepository>()),
+      UpdateTaskUseCase(Get.find<TaskRepository>())));
   Get.lazyPut(() => InProgressController(Get.find<TaskRepository>()));
   Get.lazyPut(() => CompleteController(Get.find<TaskRepository>()));
-  Get.lazyPut(() => CreateTaskController(Get.find<TaskRepository>()));
+  Get.lazyPut(() => CreateTaskController(CreateTaskUseCase(Get.find<TaskRepository>()),
+      UpdateTaskUseCase(Get.find<TaskRepository>())));
 }
 
-void mockData(MockTaskService taskService, MockTaskLocalDatasource taskLocalDatasource) {
+void mockData(MockTaskService taskService, MockTaskLocalService taskLocalDatasource) {
   final tasks = [
     TaskModel(
       id: '2',

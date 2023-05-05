@@ -2,7 +2,6 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:todo_app/common/resources/index.dart';
 import 'package:todo_app/common/utils/extensions/extension.dart';
 import 'package:todo_app/common/widgets/default_app_bar.dart';
@@ -16,7 +15,7 @@ import '../../common/widgets/default_image_widget.dart';
 import '../../common/widgets/dialogs/loading_dialog.dart';
 import '../../common/widgets/platform_image_picker.dart';
 import '../../common/widgets/title_text_field.dart';
-import '../../domain/entities/task.dart';
+import '../../domain/entities/task_entity.dart';
 import 'controller/create_task_state.dart';
 
 class CreateTaskPage extends StatefulWidget {
@@ -37,7 +36,7 @@ class _CreateTaskPageState extends State<CreateTaskPage> {
     super.initState();
 
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      final Task? task = context.getRouteArguments();
+      final TaskEntity? task = context.getRouteArguments();
       _controller.initData(task);
     });
 
@@ -47,15 +46,8 @@ class _CreateTaskPageState extends State<CreateTaskPage> {
   }
 
   @override
-  void dispose() {
-    super.dispose();
-
-    _controller.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
-    final Task? task = context.getRouteArguments();
+    final TaskEntity? task = context.getRouteArguments();
     _isCreate = task == null;
     return Form(
       key: _formKey,
@@ -88,6 +80,7 @@ class _CreateTaskPageState extends State<CreateTaskPage> {
                             if ((text ?? '').isEmpty) {
                               return 'Name is required';
                             }
+                            return null;
                           },
                         ),
                         const Spacing(),
@@ -132,7 +125,7 @@ class _CreateTaskPageState extends State<CreateTaskPage> {
     );
   }
 
-  Align _profileImage(BuildContext context, Task? task, CreateTaskState state) {
+  Align _profileImage(BuildContext context, TaskEntity? task, CreateTaskState state) {
     return Align(
       alignment: Alignment.topCenter,
       child: Stack(
@@ -175,7 +168,8 @@ class _CreateTaskPageState extends State<CreateTaskPage> {
     try {
       final PlatformImagePickerResult? imageResult = await PlatformImagePicker.show(context);
       if (imageResult != null) {
-        _controller.changeTaskImage(imageResult.file != null ? File(imageResult.file!.path) : null, imageResult.imageByte);
+        _controller.changeTaskImage(
+            imageResult.file != null ? File(imageResult.file!.path) : null, imageResult.imageByte);
       }
     } on Exception catch (e) {
       print(e.toString());

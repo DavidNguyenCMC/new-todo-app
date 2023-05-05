@@ -3,25 +3,29 @@ import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:get/get.dart';
-import 'package:injectable/injectable.dart';
 import 'package:todo_app/common/api_client/data_state.dart';
 import 'package:todo_app/common/enums/status.dart';
 import 'package:todo_app/common/event/event_bus_mixin.dart';
 import 'package:todo_app/common/utils/photo_utils.dart';
-import 'package:todo_app/domain/entities/task.dart';
+import 'package:todo_app/domain/entities/task_entity.dart';
+import 'package:todo_app/domain/usecase/create_task_usecase.dart';
+import 'package:todo_app/domain/usecase/update_task_usecase.dart';
 import 'package:todo_app/pages/helper/event_bus/task_events.dart';
-import 'package:todo_app/domain/repositories/task_repository.dart';
 import 'package:uuid/uuid.dart';
 
 import 'create_task_state.dart';
 
 class CreateTaskController extends GetxController with EventBusMixin {
-  CreateTaskController(this._taskRepository);
+  CreateTaskController(
+    this._createTaskUseCase,
+    this._updateTaskUseCase,
+  );
 
-  final TaskRepository _taskRepository;
+  final CreateTaskUseCase _createTaskUseCase;
+  final UpdateTaskUseCase _updateTaskUseCase;
   final Rx<CreateTaskState> state = CreateTaskState().obs;
 
-  void initData(Task? task) {
+  void initData(TaskEntity? task) {
     state(state.value.copyWith(
       task: task,
       name: task?.name,
@@ -48,8 +52,9 @@ class CreateTaskController extends GetxController with EventBusMixin {
   Future<void> updateTask() async {
     state(state.value.copyWith(status: RequestStatus.requesting));
     try {
-      String? base64Image = await _getBase64Image(state.value.image, state.value.imageByte) ?? state.value.task?.image;
-      final task = Task(
+      String? base64Image = await _getBase64Image(state.value.image, state.value.imageByte) ??
+          state.value.task?.image;
+      final task = TaskEntity(
         id: state.value.task?.id,
         name: state.value.name,
         desc: state.value.desc,
@@ -58,7 +63,7 @@ class CreateTaskController extends GetxController with EventBusMixin {
         status: state.value.task?.status,
         image: base64Image,
       );
-      final result = await _taskRepository.updateTask(task);
+      final result = await _updateTaskUseCase.run(task);
       if (result is DataSuccess) {
         state(state.value.copyWith(status: RequestStatus.success));
         shareEvent(OnUpdateTaskEvent(task));
@@ -74,7 +79,7 @@ class CreateTaskController extends GetxController with EventBusMixin {
     state(state.value.copyWith(status: RequestStatus.requesting));
     try {
       String? base64Image = await _getBase64Image(state.value.image, state.value.imageByte);
-      final task = Task(
+      final task = TaskEntity(
         id: Uuid().v1(),
         name: state.value.name,
         desc: state.value.desc,
@@ -83,7 +88,7 @@ class CreateTaskController extends GetxController with EventBusMixin {
         status: TaskStatus.inprogress,
         image: base64Image,
       );
-      final result = await _taskRepository.createTask(task);
+      final result = await _createTaskUseCase.run(task);
       if (result is DataSuccess) {
         state(state.value.copyWith(status: RequestStatus.success));
         shareEvent(OnCreateTaskEvent(task));

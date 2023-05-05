@@ -8,15 +8,16 @@ import 'dart:async' as _i4;
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:shared_preferences/shared_preferences.dart' as _i7;
 import 'package:todo_app/common/api_client/data_state.dart' as _i2;
-import 'package:todo_app/data/local/datasource/task_local_datasource.dart'
-    as _i3;
-import 'package:todo_app/data/task/request_models/create_task_request.dart'
+import 'package:todo_app/data/model/task/request_models/create_task_request.dart'
     as _i9;
-import 'package:todo_app/data/task/request_models/update_task_request.dart'
+import 'package:todo_app/data/model/task/request_models/update_task_request.dart'
     as _i10;
-import 'package:todo_app/data/task/response_models/task_model.dart' as _i5;
-import 'package:todo_app/data/task/task_service.dart' as _i8;
-import 'package:todo_app/domain/entities/task.dart' as _i6;
+import 'package:todo_app/data/model/task/response_models/task_model.dart'
+    as _i5;
+import 'package:todo_app/data/service/task_local_service.dart' as _i3;
+import 'package:todo_app/data/service/task_service.dart' as _i8;
+import 'package:todo_app/domain/entities/task_entity.dart' as _i6;
+import 'package:todo_app/domain/repositories/task_repository.dart' as _i11;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -39,12 +40,11 @@ class _FakeDataState_0<T> extends _i1.SmartFake implements _i2.DataState<T> {
         );
 }
 
-/// A class which mocks [TaskLocalDatasource].
+/// A class which mocks [TaskLocalService].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockTaskLocalDatasource extends _i1.Mock
-    implements _i3.TaskLocalDatasource {
-  MockTaskLocalDatasource() {
+class MockTaskLocalService extends _i1.Mock implements _i3.TaskLocalService {
+  MockTaskLocalService() {
     _i1.throwOnMissingStub(this);
   }
 
@@ -57,7 +57,7 @@ class MockTaskLocalDatasource extends _i1.Mock
         returnValue: _i4.Future<List<_i5.TaskModel>?>.value(),
       ) as _i4.Future<List<_i5.TaskModel>?>);
   @override
-  _i4.Future<void> setTasks(List<_i6.Task>? tasks) => (super.noSuchMethod(
+  _i4.Future<void> setTasks(List<_i6.TaskEntity>? tasks) => (super.noSuchMethod(
         Invocation.method(
           #setTasks,
           [tasks],
@@ -66,7 +66,7 @@ class MockTaskLocalDatasource extends _i1.Mock
         returnValueForMissingStub: _i4.Future<void>.value(),
       ) as _i4.Future<void>);
   @override
-  _i4.Future<void> updateTask(_i6.Task? task) => (super.noSuchMethod(
+  _i4.Future<void> updateTask(_i6.TaskEntity? task) => (super.noSuchMethod(
         Invocation.method(
           #updateTask,
           [task],
@@ -355,4 +355,143 @@ class MockTaskService extends _i1.Mock implements _i8.TaskService {
           ),
         )),
       ) as _i4.Future<_i2.DataState<bool>>);
+}
+
+/// A class which mocks [TaskRepository].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockTaskRepository extends _i1.Mock implements _i11.TaskRepository {
+  @override
+  _i4.Future<List<_i6.TaskEntity>?> getCachedTasks() => (super.noSuchMethod(
+        Invocation.method(
+          #getCachedTasks,
+          [],
+        ),
+        returnValue: _i4.Future<List<_i6.TaskEntity>?>.value(),
+        returnValueForMissingStub: _i4.Future<List<_i6.TaskEntity>?>.value(),
+      ) as _i4.Future<List<_i6.TaskEntity>?>);
+  @override
+  _i4.Future<_i2.DataState<List<_i6.TaskEntity>>> getTasks() =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #getTasks,
+          [],
+        ),
+        returnValue: _i4.Future<_i2.DataState<List<_i6.TaskEntity>>>.value(
+            _FakeDataState_0<List<_i6.TaskEntity>>(
+          this,
+          Invocation.method(
+            #getTasks,
+            [],
+          ),
+        )),
+        returnValueForMissingStub:
+            _i4.Future<_i2.DataState<List<_i6.TaskEntity>>>.value(
+                _FakeDataState_0<List<_i6.TaskEntity>>(
+          this,
+          Invocation.method(
+            #getTasks,
+            [],
+          ),
+        )),
+      ) as _i4.Future<_i2.DataState<List<_i6.TaskEntity>>>);
+  @override
+  _i4.Future<_i2.DataState<_i6.TaskEntity>> createTask(_i6.TaskEntity? task) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #createTask,
+          [task],
+        ),
+        returnValue: _i4.Future<_i2.DataState<_i6.TaskEntity>>.value(
+            _FakeDataState_0<_i6.TaskEntity>(
+          this,
+          Invocation.method(
+            #createTask,
+            [task],
+          ),
+        )),
+        returnValueForMissingStub:
+            _i4.Future<_i2.DataState<_i6.TaskEntity>>.value(
+                _FakeDataState_0<_i6.TaskEntity>(
+          this,
+          Invocation.method(
+            #createTask,
+            [task],
+          ),
+        )),
+      ) as _i4.Future<_i2.DataState<_i6.TaskEntity>>);
+  @override
+  _i4.Future<_i2.DataState<_i6.TaskEntity>> updateTask(_i6.TaskEntity? task) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #updateTask,
+          [task],
+        ),
+        returnValue: _i4.Future<_i2.DataState<_i6.TaskEntity>>.value(
+            _FakeDataState_0<_i6.TaskEntity>(
+          this,
+          Invocation.method(
+            #updateTask,
+            [task],
+          ),
+        )),
+        returnValueForMissingStub:
+            _i4.Future<_i2.DataState<_i6.TaskEntity>>.value(
+                _FakeDataState_0<_i6.TaskEntity>(
+          this,
+          Invocation.method(
+            #updateTask,
+            [task],
+          ),
+        )),
+      ) as _i4.Future<_i2.DataState<_i6.TaskEntity>>);
+  @override
+  _i4.Future<_i2.DataState<bool>> deleteTask(String? taskId) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #deleteTask,
+          [taskId],
+        ),
+        returnValue:
+            _i4.Future<_i2.DataState<bool>>.value(_FakeDataState_0<bool>(
+          this,
+          Invocation.method(
+            #deleteTask,
+            [taskId],
+          ),
+        )),
+        returnValueForMissingStub:
+            _i4.Future<_i2.DataState<bool>>.value(_FakeDataState_0<bool>(
+          this,
+          Invocation.method(
+            #deleteTask,
+            [taskId],
+          ),
+        )),
+      ) as _i4.Future<_i2.DataState<bool>>);
+  @override
+  _i4.Future<_i2.DataState<List<_i6.TaskEntity>>> searchTasks(String? text) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #searchTasks,
+          [text],
+        ),
+        returnValue: _i4.Future<_i2.DataState<List<_i6.TaskEntity>>>.value(
+            _FakeDataState_0<List<_i6.TaskEntity>>(
+          this,
+          Invocation.method(
+            #searchTasks,
+            [text],
+          ),
+        )),
+        returnValueForMissingStub:
+            _i4.Future<_i2.DataState<List<_i6.TaskEntity>>>.value(
+                _FakeDataState_0<List<_i6.TaskEntity>>(
+          this,
+          Invocation.method(
+            #searchTasks,
+            [text],
+          ),
+        )),
+      ) as _i4.Future<_i2.DataState<List<_i6.TaskEntity>>>);
 }

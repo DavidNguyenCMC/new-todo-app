@@ -5,7 +5,7 @@ import 'package:todo_app/common/widgets/default_image_widget.dart';
 import '../../common/resources/index.dart';
 import '../../common/widgets/app_checkbox.dart';
 import '../../common/widgets/spacing.dart';
-import '../../domain/entities/task.dart';
+import '../../domain/entities/task_entity.dart';
 import '../todo/helper/task_options.dart';
 import 'detail_option_widget.dart';
 
@@ -20,11 +20,11 @@ class TaskListWidget extends StatelessWidget {
     this.showCheckBox = true,
   }) : super(key: key);
 
-  final List<Task>? tasks;
-  final Function(Task? task)? onItemTapped;
-  final Function(Task? task, bool value)? onChecked;
-  final Function(Task? task)? onEditTapped;
-  final Function(Task? task)? onDeleteTapped;
+  final List<TaskEntity>? tasks;
+  final Function(TaskEntity? task)? onItemTapped;
+  final Function(TaskEntity? task, bool value)? onChecked;
+  final Function(TaskEntity? task)? onEditTapped;
+  final Function(TaskEntity? task)? onDeleteTapped;
   final bool showCheckBox;
 
   @override
@@ -43,7 +43,7 @@ class TaskListWidget extends StatelessWidget {
     );
   }
 
-  void _onTaskDetailOptionTapped(BuildContext context, Task? task) {
+  void _onTaskDetailOptionTapped(BuildContext context, TaskEntity? task) {
     showModalBottomSheet<dynamic>(
       context: context,
       backgroundColor: AppColors.transparent,
@@ -56,7 +56,7 @@ class TaskListWidget extends StatelessWidget {
     );
   }
 
-  void _onOptionTapped(OptionType option, Task? task) {
+  void _onOptionTapped(OptionType option, TaskEntity? task) {
     switch (option) {
       case OptionType.edit:
         onEditTapped?.call(task);
@@ -78,11 +78,11 @@ class TaskItemWidget extends StatelessWidget {
     this.showCheckBox = true,
   }) : super(key: key);
 
-  final Task? task;
-  final Function(Task? task)? onItemTapped;
-  final Function(Task? task, bool value)? onChecked;
+  final TaskEntity? task;
+  final Function(TaskEntity? task)? onItemTapped;
+  final Function(TaskEntity? task, bool value)? onChecked;
   final bool showCheckBox;
-  final Function(BuildContext context, Task? task)? onTaskDetailOptionTapped;
+  final Function(BuildContext context, TaskEntity? task)? onTaskDetailOptionTapped;
 
   @override
   Widget build(BuildContext context) {

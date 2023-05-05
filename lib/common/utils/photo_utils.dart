@@ -35,10 +35,9 @@ Future<Uint8List?> reduceImageQualityAndSize(Uint8List? image, [int reduceToQual
   // }
 
   quality = (quality - (quality * (reduceToQuality / 100))).toInt();
-  int width = img!.width - (img.width * (reduceToQuality/100)).toInt();
-  IMG.Image resized = await IMG.copyResize(img, width: 128);
-  resizedData =
-  await Uint8List.fromList(IMG.encodeJpg(resized, quality: quality));
+  // int width = img!.width - (img.width * (reduceToQuality / 100)).toInt();
+  IMG.Image resized = await IMG.copyResize(img!, width: 128);
+  resizedData = await Uint8List.fromList(IMG.encodeJpg(resized, quality: quality));
   size = await resizedData.lengthInBytes;
   img = resized;
 

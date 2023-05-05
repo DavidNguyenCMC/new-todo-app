@@ -2,10 +2,10 @@ import 'package:equatable/equatable.dart';
 import 'package:todo_app/common/enums/status.dart';
 
 import '../../../common/enums/data_source_status.dart';
-import '../../../domain/entities/task.dart';
+import '../../../domain/entities/task_entity.dart';
 
 class TodoState extends Equatable {
-  final List<Task>? tasks;
+  final List<TaskEntity>? tasks;
   final RequestStatus status;
   final DataSourceStatus dataStatus;
   final String? message;
@@ -18,7 +18,7 @@ class TodoState extends Equatable {
   });
 
   TodoState copyWith({
-    List<Task>? tasks,
+    List<TaskEntity>? tasks,
     RequestStatus? status,
     DataSourceStatus? dataStatus,
     String? message,

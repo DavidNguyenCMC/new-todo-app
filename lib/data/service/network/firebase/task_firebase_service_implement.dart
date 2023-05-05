@@ -1,23 +1,13 @@
 import 'package:firebase_database/firebase_database.dart';
-import 'package:injectable/injectable.dart';
+import 'package:todo_app/data/model/task/request_models/create_task_request.dart';
+import 'package:todo_app/data/model/task/request_models/update_task_request.dart';
+import 'package:todo_app/data/model/task/response_models/task_model.dart';
+import 'package:todo_app/data/service/task_service.dart';
 
-import '../../../common/api_client/data_state.dart';
-import 'request_models/create_task_request.dart';
-import 'request_models/update_task_request.dart';
-import 'response_models/task_model.dart';
+import '../../../../common/api_client/data_state.dart';
 
-abstract class TaskService {
-  Future<DataState<List<TaskModel>>> getTasks();
-
-  Future<DataState<TaskModel>> createTask(CreateTaskRequest data);
-
-  Future<DataState<TaskModel>> updateTask(UpdateTaskRequest data);
-
-  Future<DataState<bool>> deleteTask(String? taskId);
-}
-
-class TaskServiceImpl implements TaskService {
-  TaskServiceImpl() : ref = FirebaseDatabase.instance.ref();
+class TaskFirebaseServiceImpl implements TaskService {
+  TaskFirebaseServiceImpl() : ref = FirebaseDatabase.instance.ref();
   final DatabaseReference ref;
 
   @override
@@ -40,7 +30,9 @@ class TaskServiceImpl implements TaskService {
     final Map<String, Map> updates = {};
     updates['/tasks/data/${data.task.id}'] = postData;
 
-    return ref.update(updates).then((value) => DataSuccess(data.task), onError: (e) => DataFailed(e.toString()));
+    return ref
+        .update(updates)
+        .then((value) => DataSuccess(data.task), onError: (e) => DataFailed(e.toString()));
   }
 
   @override
