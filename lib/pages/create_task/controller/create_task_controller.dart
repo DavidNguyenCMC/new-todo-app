@@ -41,14 +41,14 @@ class CreateTaskController extends GetxController with EventBusMixin {
     state(state.value.copyWith(expiredTime: date));
   }
 
-  void changeTaskImage(File? file) {
-    state(state.value.copyWith(image: file));
+  void changeTaskImage(File? file, [Uint8List? imageByte]) {
+    state(state.value.copyWith(image: file, imageByte: imageByte));
   }
 
   Future<void> updateTask() async {
     state(state.value.copyWith(status: RequestStatus.requesting));
     try {
-      String? base64Image = await _getBase64Image(state.value.image) ?? state.value.task?.image;
+      String? base64Image = await _getBase64Image(state.value.image, state.value.imageByte) ?? state.value.task?.image;
       final task = Task(
         id: state.value.task?.id,
         name: state.value.name,
@@ -73,7 +73,7 @@ class CreateTaskController extends GetxController with EventBusMixin {
   Future<void> createTask() async {
     state(state.value.copyWith(status: RequestStatus.requesting));
     try {
-      String? base64Image = await _getBase64Image(state.value.image);
+      String? base64Image = await _getBase64Image(state.value.image, state.value.imageByte);
       final task = Task(
         id: Uuid().v1(),
         name: state.value.name,
@@ -95,8 +95,8 @@ class CreateTaskController extends GetxController with EventBusMixin {
     }
   }
 
-  Future<String?> _getBase64Image(File? file) async {
-    final Uint8List? imageBytes = await file?.readAsBytes();
+  Future<String?> _getBase64Image(File? file, [Uint8List? imageByte]) async {
+    final Uint8List? imageBytes = imageByte ?? await file?.readAsBytes();
     final reduceSizeImage = await reduceImageQualityAndSize(imageBytes);
     String? base64Image = reduceSizeImage == null ? null : base64Encode(reduceSizeImage);
     return base64Image;

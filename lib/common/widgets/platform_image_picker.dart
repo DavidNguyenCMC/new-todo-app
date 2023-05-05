@@ -10,21 +10,29 @@ import '../../common/resources/index.dart';
 
 // ignore_for_file: always_specify_types
 // ignore: avoid_classes_with_only_static_members
+class PlatformImagePickerResult {
+  XFile? file;
+  Uint8List? imageByte;
+
+  PlatformImagePickerResult({this.file, this.imageByte});
+}
+
 class PlatformImagePicker {
-  static Future<XFile?> show(BuildContext context) async {
+  static Future<PlatformImagePickerResult?> show(BuildContext context) async {
     if (kIsWeb) {
       Uint8List? fromPicker = await ImagePickerWeb.getImageAsBytes();
       XFile? file;
       if (fromPicker != null) {
         file = XFile.fromData(fromPicker);
       }
-      return file;
+      return PlatformImagePickerResult(file: file, imageByte: fromPicker);
     }
     final ImageSource? imageSource = await _showImageSourceActionSheet(context);
     final ImagePicker picker = ImagePicker();
     try {
       if (imageSource != null) {
-        return picker.pickImage(source: imageSource, imageQuality: 20);
+        final file = await picker.pickImage(source: imageSource, imageQuality: 20);
+        return PlatformImagePickerResult(file: file);
       } else {
         return null;
       }

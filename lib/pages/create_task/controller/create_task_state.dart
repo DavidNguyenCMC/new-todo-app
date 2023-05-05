@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:equatable/equatable.dart';
+import 'package:flutter/foundation.dart';
 import 'package:todo_app/common/enums/status.dart';
 
 import '../../../models/task.dart';
@@ -14,6 +15,7 @@ class CreateTaskState extends Equatable {
     this.task,
     this.expiredTime,
     this.image,
+    this.imageByte,
   });
 
   final String? name;
@@ -23,6 +25,7 @@ class CreateTaskState extends Equatable {
   final String? message;
   final Task? task;
   final File? image;
+  final Uint8List? imageByte;
 
   CreateTaskState copyWith({
     Task? task,
@@ -32,6 +35,7 @@ class CreateTaskState extends Equatable {
     String? message,
     DateTime? expiredTime,
     File? image,
+    Uint8List? imageByte,
   }) {
     return CreateTaskState(
       task: task ?? this.task,
@@ -41,6 +45,7 @@ class CreateTaskState extends Equatable {
       message: message ?? this.message,
       expiredTime: expiredTime ?? this.expiredTime,
       image: image ?? this.image,
+      imageByte: imageByte ?? this.imageByte,
     );
   }
 
@@ -53,5 +58,6 @@ class CreateTaskState extends Equatable {
         this.message,
         this.expiredTime,
         this.image,
+        this.imageByte,
       ];
 }

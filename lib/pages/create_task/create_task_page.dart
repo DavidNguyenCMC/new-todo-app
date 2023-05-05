@@ -173,9 +173,9 @@ class _CreateTaskPageState extends State<CreateTaskPage> {
 
   Future<void> _onChangeProfileImageTapped(BuildContext context) async {
     try {
-      final XFile? image = await PlatformImagePicker.show(context);
-      if (image != null) {
-        _controller.changeTaskImage(File(image.path));
+      final PlatformImagePickerResult? imageResult = await PlatformImagePicker.show(context);
+      if (imageResult != null) {
+        _controller.changeTaskImage(imageResult.file != null ? File(imageResult.file!.path) : null, imageResult.imageByte);
       }
     } on Exception catch (e) {
       print(e.toString());
