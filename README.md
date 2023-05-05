@@ -98,18 +98,22 @@ Now, lets dive into the lib folder which has the main code for the application.
 ```
 
 In here: Directory structure according to Flutter Clean Architecture Primer
+
 |- data: Represents the data-layer of the application
     |- models
     |- repository-implement
     |- mappers (Map Entity objects to Models and vice-versa)
     |- service (support to connect with database)
+    
 |- domain: Represents the inner-most layer. Therefore, it the most abstract layer in the architecture.
     |- entities
     |- repositories (using as gateway)
     |- usecase
+    
 |- presentation: is the presentation layer of the application
     |- pages
     |- routes
+    
 |- infrastructor: contain all of framework that using on application
     |- di (Initialize the objects and the dependency injection module.)
     |- generated (generated from flutter_intl)
