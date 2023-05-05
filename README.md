@@ -27,3 +27,16 @@ https://user-images.githubusercontent.com/130980158/235578091-ed99b64d-d735-43c1
 - flutter packages pub run build_runner build
 - or: flutter packages pub run build_runner build --delete-conflicting-outputs
 - Preference > Editor > Code Style > Dart > Line Length: 100
+
+🚀 Run Docker
+- Create the Container
+- To get the container running, we first have to build an image:
+  docker build -t flutter-web .
+
+This builds an image called flutter-web and uses the current directory as the context for the Dockerfile
+If everything completed successfully, we then run the container:
+  docker run -d -p 8080:80 --name flutter-web flutter-web 
+
+- Now, if you navigate to http://localhost:8080, you should see the flutter app.
+- When you want to stop it, run:
+  docker stop flutter-web
