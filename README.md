@@ -26,6 +26,7 @@ https://user-images.githubusercontent.com/130980158/235578091-ed99b64d-d735-43c1
 🚀 # To run gRPC service in local:
   - Install protoc_plugin before run, check this link: https://grpc.io/docs/languages/dart/quickstart/
   - run this script in terminal: dart .\bin\server.dart 
+
 🚀 Note: gRPC only work on mobile for now because web need gRPC-web server(it's not support for dart now, we can use another server). So in web we can use firebase instead.
  
 🚀 # Run Docker
