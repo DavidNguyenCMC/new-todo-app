@@ -11,14 +11,14 @@ import 'package:todo_app/common/widgets/date_time_field.dart';
 import 'package:todo_app/data/local/datasource/task_local_datasource.dart';
 import 'package:todo_app/data/task/response_models/task_model.dart';
 import 'package:todo_app/data/task/task_service.dart';
-import 'package:todo_app/models/task.dart';
+import 'package:todo_app/domain/entities/task.dart';
 import 'package:todo_app/pages/app.dart';
 import 'package:todo_app/pages/complete/controller/complete_controller.dart';
 import 'package:todo_app/pages/create_task/controller/create_task_controller.dart';
 import 'package:todo_app/pages/inprogress/controller/inprogress_controller.dart';
 import 'package:todo_app/pages/todo/controller/todo_controller.dart';
 import 'package:todo_app/pages/widgets/task_list_widget.dart';
-import 'package:todo_app/repositories/task_repository.dart';
+import 'package:todo_app/domain/repositories/task_repository.dart';
 
 import '../unit_test/repository/task_repository_test.mocks.dart';
 

@@ -5,7 +5,7 @@ import 'package:todo_app/common/widgets/default_image_widget.dart';
 import '../../common/resources/index.dart';
 import '../../common/widgets/app_checkbox.dart';
 import '../../common/widgets/spacing.dart';
-import '../../models/task.dart';
+import '../../domain/entities/task.dart';
 import '../todo/helper/task_options.dart';
 import 'detail_option_widget.dart';
 

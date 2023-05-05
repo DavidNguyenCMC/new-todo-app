@@ -1,4 +1,4 @@
-import '../../../models/task.dart';
+import '../../../domain/entities/task.dart';
 
 class OnCreateTaskEvent {
 

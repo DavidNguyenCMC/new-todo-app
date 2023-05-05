@@ -2,7 +2,7 @@ import 'package:equatable/equatable.dart';
 import 'package:todo_app/common/enums/status.dart';
 
 import '../../../common/enums/data_source_status.dart';
-import '../../../models/task.dart';
+import '../../../domain/entities/task.dart';
 
 class CompleteState extends Equatable {
   final List<Task>? tasks;

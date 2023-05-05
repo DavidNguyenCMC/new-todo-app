@@ -4,7 +4,7 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/foundation.dart';
 import 'package:todo_app/common/enums/status.dart';
 
-import '../../../models/task.dart';
+import '../../../domain/entities/task.dart';
 
 class CreateTaskState extends Equatable {
   const CreateTaskState({

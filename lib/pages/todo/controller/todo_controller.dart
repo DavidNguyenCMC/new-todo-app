@@ -9,8 +9,8 @@ import 'package:todo_app/pages/todo/controller/todo_state.dart';
 import '../../../common/api_client/data_state.dart';
 import '../../../common/enums/data_source_status.dart';
 import '../../../common/enums/status.dart';
-import '../../../models/task.dart';
-import '../../../repositories/task_repository.dart';
+import '../../../domain/entities/task.dart';
+import '../../../domain/repositories/task_repository.dart';
 import '../../helper/event_bus/task_events.dart';
 
 class TodoController extends GetxController with EventBusMixin {

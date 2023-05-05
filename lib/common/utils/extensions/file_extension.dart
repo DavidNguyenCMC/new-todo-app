@@ -13,8 +13,4 @@ extension FileModifier on html.File {
     reader.readAsArrayBuffer(this);
     return Uint8List.fromList(await bytesFile.future);
   }
-
-  html.File convertToHtmlFile(File file) {
-    final htmlFile = html.File;
-  }
 }

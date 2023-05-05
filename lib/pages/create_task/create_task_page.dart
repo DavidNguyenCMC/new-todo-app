@@ -16,7 +16,7 @@ import '../../common/widgets/default_image_widget.dart';
 import '../../common/widgets/dialogs/loading_dialog.dart';
 import '../../common/widgets/platform_image_picker.dart';
 import '../../common/widgets/title_text_field.dart';
-import '../../models/task.dart';
+import '../../domain/entities/task.dart';
 import 'controller/create_task_state.dart';
 
 class CreateTaskPage extends StatefulWidget {

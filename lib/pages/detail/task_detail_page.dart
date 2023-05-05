@@ -6,7 +6,7 @@ import 'package:todo_app/common/widgets/spacing.dart';
 import 'package:todo_app/routes/app_routes.dart';
 
 import '../../common/widgets/default_image_widget.dart';
-import '../../models/task.dart';
+import '../../domain/entities/task.dart';
 
 class TaskDetailPage extends StatelessWidget {
   const TaskDetailPage({Key? key}) : super(key: key);

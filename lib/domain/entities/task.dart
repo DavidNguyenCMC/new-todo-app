@@ -1,6 +1,6 @@
 import 'package:collection/collection.dart';
 
-import '../common/resources/index.dart';
+import '../../common/resources/index.dart';
 
 class Task {
   String? id;
@@ -22,9 +22,7 @@ class Task {
   });
 }
 
-enum TaskStatus {
-  complete, inprogress
-}
+enum TaskStatus { complete, inprogress }
 
 extension TaskStatusX on TaskStatus {
   String get name {

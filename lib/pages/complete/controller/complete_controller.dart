@@ -5,8 +5,8 @@ import '../../../common/api_client/data_state.dart';
 import '../../../common/enums/data_source_status.dart';
 import '../../../common/enums/status.dart';
 import '../../../common/event/event_bus_mixin.dart';
-import '../../../models/task.dart';
-import '../../../repositories/task_repository.dart';
+import '../../../domain/entities/task.dart';
+import '../../../domain/repositories/task_repository.dart';
 import '../../helper/event_bus/task_events.dart';
 import 'complete_state.dart';
 

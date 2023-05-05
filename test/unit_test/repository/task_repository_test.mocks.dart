@@ -16,7 +16,7 @@ import 'package:todo_app/data/task/request_models/update_task_request.dart'
     as _i10;
 import 'package:todo_app/data/task/response_models/task_model.dart' as _i5;
 import 'package:todo_app/data/task/task_service.dart' as _i8;
-import 'package:todo_app/models/task.dart' as _i6;
+import 'package:todo_app/domain/entities/task.dart' as _i6;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values

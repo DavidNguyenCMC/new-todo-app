@@ -5,7 +5,7 @@ import 'package:todo_app/data/task/response_models/task_model.dart';
 import 'package:todo_app/data/task/request_models/update_task_request.dart';
 import 'package:todo_app/data/task/request_models/create_task_request.dart';
 import 'package:todo_app/common/api_client/data_state.dart';
-import 'package:todo_app/models/task.dart';
+import 'package:todo_app/domain/entities/task.dart';
 import '../../generated/todo_barrel.dart';
 import '../../mappers/task_model_to_todo_mapper.dart';
 import '../../mappers/todo_grpc_to_task_model_mapper.dart';

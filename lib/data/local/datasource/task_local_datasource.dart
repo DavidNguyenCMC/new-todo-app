@@ -1,7 +1,6 @@
 import 'dart:convert';
-import 'package:injectable/injectable.dart';
+import 'package:todo_app/domain/entities/task.dart';
 
-import '../../../models/task.dart';
 import '../../task/response_models/task_model.dart';
 import '../keychain/shared_prefs.dart';
 import '../keychain/shared_prefs_key.dart';

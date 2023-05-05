@@ -1,6 +1,6 @@
 import 'package:todo_app/data/generated/todo_barrel.dart';
 import 'package:todo_app/data/task/response_models/task_model.dart';
-import 'package:todo_app/models/task.dart';
+import 'package:todo_app/domain/entities/task.dart';
 
 import 'mapper.dart';
 

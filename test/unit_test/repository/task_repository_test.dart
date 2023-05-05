@@ -6,8 +6,8 @@ import 'package:todo_app/common/api_client/data_state.dart';
 import 'package:todo_app/data/local/datasource/task_local_datasource.dart';
 import 'package:todo_app/data/task/response_models/task_model.dart';
 import 'package:todo_app/data/task/task_service.dart';
-import 'package:todo_app/models/task.dart';
-import 'package:todo_app/repositories/task_repository.dart';
+import 'package:todo_app/domain/entities/task.dart';
+import 'package:todo_app/domain/repositories/task_repository.dart';
 
 import 'task_repository_test.mocks.dart';
 

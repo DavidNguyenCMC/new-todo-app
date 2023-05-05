@@ -1,5 +1,5 @@
 import 'package:todo_app/common/utils/extensions/extension.dart';
-import 'package:todo_app/models/task.dart';
+import 'package:todo_app/domain/entities/task.dart';
 
 class TaskModel extends Task {
   TaskModel({
@@ -25,12 +25,10 @@ class TaskModel extends Task {
       id: id,
       name: json['name'] as String?,
       desc: json['desc'] as String?,
-      createAt: json['createdAt'] == null
-          ? null
-          : DateTime.parse(json['createdAt'] as String).toLocal(),
-      expiredAt: json['expiredAt'] == null
-          ? null
-          : DateTime.parse(json['expiredAt'] as String).toLocal(),
+      createAt:
+          json['createdAt'] == null ? null : DateTime.parse(json['createdAt'] as String).toLocal(),
+      expiredAt:
+          json['expiredAt'] == null ? null : DateTime.parse(json['expiredAt'] as String).toLocal(),
       status: json['status'] == null ? null : json['status'] as String?,
       image: json['image'],
     );
@@ -41,12 +39,10 @@ class TaskModel extends Task {
       id: json['id'] as String?,
       name: json['name'] as String?,
       desc: json['desc'] as String?,
-      createAt: json['createdAt'] == null
-          ? null
-          : DateTime.parse(json['createdAt'] as String).toLocal(),
-      expiredAt: json['expiredAt'] == null
-          ? null
-          : DateTime.parse(json['expiredAt'] as String).toLocal(),
+      createAt:
+          json['createdAt'] == null ? null : DateTime.parse(json['createdAt'] as String).toLocal(),
+      expiredAt:
+          json['expiredAt'] == null ? null : DateTime.parse(json['expiredAt'] as String).toLocal(),
       status: json['status'] == null ? null : json['status'] as String?,
       image: json['image'],
     );

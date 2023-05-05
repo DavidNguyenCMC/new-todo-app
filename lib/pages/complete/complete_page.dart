@@ -9,7 +9,7 @@ import '../../common/enums/status.dart';
 import '../../common/resources/index.dart';
 import '../../common/widgets/dialogs/loading_dialog.dart';
 import '../../common/widgets/toast/toast.dart';
-import '../../models/task.dart';
+import '../../domain/entities/task.dart';
 import '../../routes/app_routes.dart';
 import '../widgets/task_list_widget.dart';
 

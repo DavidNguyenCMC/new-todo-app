@@ -1,5 +1,5 @@
 import 'package:grpc/grpc.dart';
-import 'package:server/src/service/todo_service.dart';
+import '../lib/src/service/todo_service.dart';
 
 void main(List<String> arguments) async {
   final server = Server([TodoService()]);

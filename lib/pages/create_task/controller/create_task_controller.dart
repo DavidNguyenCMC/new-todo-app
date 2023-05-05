@@ -8,9 +8,9 @@ import 'package:todo_app/common/api_client/data_state.dart';
 import 'package:todo_app/common/enums/status.dart';
 import 'package:todo_app/common/event/event_bus_mixin.dart';
 import 'package:todo_app/common/utils/photo_utils.dart';
-import 'package:todo_app/models/task.dart';
+import 'package:todo_app/domain/entities/task.dart';
 import 'package:todo_app/pages/helper/event_bus/task_events.dart';
-import 'package:todo_app/repositories/task_repository.dart';
+import 'package:todo_app/domain/repositories/task_repository.dart';
 import 'package:uuid/uuid.dart';
 
 import 'create_task_state.dart';

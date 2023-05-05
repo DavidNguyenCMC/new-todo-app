@@ -40,3 +40,60 @@ If everything completed successfully, we then run the container:
 - Now, if you navigate to http://localhost:8080, you should see the flutter app.
 - When you want to stop it, run:
   docker stop flutter-web
+
+🚀 ## <a name="architecture-of-boilerplate">#</a> 🙌 Architecture of boilerplate
+
+#### Boilerplate using Clean Architecture
+
+- Advantages of using this architecture
+    - Easier to modify
+    - Easier to test
+    - Easier to detect bugs & errors
+- There are three main categories in a clean architecture structure;
+    - Data ⇨ Local and / or Remote(API) data sources
+    - Domain ⇨ business logic(use cases) and business objects(entities) to modify or shape the data source
+    - Presentation ⇨ How modified data source is shown to user
+<br/>
+## <a name="folder-structure">#</a> 🚪 Folder Structure
+
+Here is the core folder structure which flutter provides.
+
+```
+flutter-app/
+|- android
+|- build
+|- ios
+|- lib
+|- test
+|- server
+|- web
+|- protos
+```
+
+Here is the folder structure we have been using in this project
+
+```
+lib/
+|- common
+|- configs
+|- data
+|- domain
+|- di
+|- l10n
+|- pages
+|- routers
+|- main.dart
+|- main_common.dart
+```
+
+Now, lets dive into the lib folder which has the main code for the application.
+
+```
+1- data - Local and / or Remote(API) data sources, raw model from data source, mapper(Map Entity objects to Models and vice-versa)
+2- domain - Business logic and business objects(entities) to modify or shape the data source.
+3- di - Initialize the objects and the dependency injection module.
+4- pages - How modified data source is shown to user.
+5- router - Routes folder containing routes for the app.
+6- common - Folders manage constants, helpers, extensions,...
+7- main_common.dart - Method injection flavor for target file main_production.dart and main_staging.dart.
+```

@@ -2,9 +2,9 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:todo_app/common/api_client/data_state.dart';
 import 'package:todo_app/data/task/response_models/task_model.dart';
-import 'package:todo_app/models/task.dart';
+import 'package:todo_app/domain/entities/task.dart';
 import 'package:todo_app/pages/todo/controller/todo_controller.dart';
-import 'package:todo_app/repositories/task_repository.dart';
+import 'package:todo_app/domain/repositories/task_repository.dart';
 
 import '../repository/task_repository_test.mocks.dart';
 

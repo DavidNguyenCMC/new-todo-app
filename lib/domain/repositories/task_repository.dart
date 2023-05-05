@@ -1,12 +1,11 @@
-import 'package:injectable/injectable.dart';
+import 'package:todo_app/data/task/request_models/update_task_request.dart';
+import 'package:todo_app/domain/entities/task.dart';
 
-import '../common/api_client/data_state.dart';
-import '../data/local/datasource/task_local_datasource.dart';
-import '../data/task/request_models/create_task_request.dart';
-import '../data/task/request_models/update_task_request.dart';
-import '../data/task/response_models/task_model.dart';
-import '../data/task/task_service.dart';
-import '../models/task.dart';
+import '../../common/api_client/data_state.dart';
+import '../../data/local/datasource/task_local_datasource.dart';
+import '../../data/task/request_models/create_task_request.dart';
+import '../../data/task/response_models/task_model.dart';
+import '../../data/task/task_service.dart';
 
 abstract class TaskRepository {
   Future<List<Task>?> getCachedTasks();
